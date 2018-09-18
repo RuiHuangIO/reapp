@@ -11,8 +11,16 @@ export default class Counter extends React.Component {
   // since we are not using constructor for anything besides initializing this.state
 
   state = {
-    count: 0
+    count: 0,
+    visible: true
   };
+  componentWillUnmount() {
+    console.log("unmounting...");
+  }
+
+  componentDidMount() {
+    console.log("mounting...");
+  }
 
   incrementHandler = () => {
     // lambda function binds the state

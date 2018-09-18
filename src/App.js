@@ -31,7 +31,16 @@ class App extends Component {
     } else if (this.state.whichComponentToShow === "Counter") {
       return (
         <div className="App">
-          <Counter />
+          <div className={this.state.visible ? "visible" : "hidden"}>
+            <Counter />
+          </div>
+          <button
+            onClick={() => {
+              this.setState({ visible: !this.state.visible });
+            }}
+          >
+            Toggle counter
+          </button>
           <button
             onClick={() => {
               this.setState({ whichComponentToShow: "Header" });
