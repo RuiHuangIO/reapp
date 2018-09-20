@@ -10,52 +10,58 @@ export default class Form extends React.Component {
 
   handleChange = event => {
     //use event parameter to get the input
-    // console.log(event.target.value);
-
-    this.setState({ name: event.target.value });
+    //console.log(event.target.value);
+    const isCheckbox = event.target.type === "checkbox";
+    this.setState({
+      [event.target.name]: isCheckbox
+        ? event.target.checked
+        : event.target.value
+    });
+    // use bracket to update the value
   };
 
-  handleFavoritePetChange = event => {
-    this.setState({ favoritePet: event.target.value });
-  };
-
-  handleCheckboxChange = event => {
-    this.setState({ rememberMe: event.target.checked });
-  };
-
-  handleSelect = event => {
-    this.setState({ title: event.target.value });
-  };
-
-  handleSubmit = () => {
+  handleSubmit = event => {
+    event.preventDefault();
     //submit a snapshot of the state
     console.log(this.state);
   };
 
   render() {
     return (
-      <div>
+      <form onSubmit={this.handleSubmit}>
         {/* uncontrolled field (not storing the data being passed)*/}
-        <input onChange={this.handleChange} value={this.state.name} />
+        <input
+          name="name"
+          onChange={this.handleChange}
+          value={this.state.name}
+        />
         <textarea
-          onChange={this.handleFavoritePetChange}
+          name="favoritePet"
+          onChange={this.handleChange}
           value={this.state.favoritePet}
         />
         <input
+          name="rememberMe"
           type="checkbox"
           checked={this.state.rememberMe}
-          onChange={this.handleCheckboxChange}
+          onChange={this.handleChange}
+          //no need for false to be passed in other ones because default is undefined which valuates to false
         />
         <div>
-          <select value={this.state.title} onChange={this.handleSelect}>
+          <select
+            name="title"
+            value={this.state.title}
+            onChange={this.handleChange}
+          >
             <option>Mr.</option>
             <option>Miss</option>
             <option>Mrs.</option>
             <option>Ms.</option>
           </select>
         </div>
-        <button onClick={this.handleSubmit}>Submit</button>
-      </div>
+        <button type="submit">Submit</button>
+      </form>
+      //pressing 'enter' will submit the form
     );
   }
 }
