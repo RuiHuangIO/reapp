@@ -50,7 +50,6 @@ export default class ValidationForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     const isValid = this.validate();
-    console.log(this.state);
 
     if (isValid) {
       //clear the form if the form is valid
