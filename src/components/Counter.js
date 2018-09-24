@@ -10,38 +10,13 @@ export default class Counter extends React.Component {
   // }
   // since we are not using constructor for anything besides initializing this.state
 
-  state = {
-    count: 0,
-    visible: true
-  };
-  componentWillUnmount() {
-    console.log("unmounting...");
-  }
-
-  componentDidMount() {
-    console.log("mounting...");
-  }
-
-  incrementHandler = () => {
-    // lambda function binds the state
-    this.setState({
-      count: this.state.count + 1
-    });
-  };
-
-  decrementHandler = () => {
-    // lambda function binds the state
-    this.setState({
-      count: this.state.count - 1
-    });
-  };
-
   render() {
     return (
+      // when lifting up states, pass in props
       <div>
-        <div>count: {this.state.count} </div>
-        <button onClick={this.incrementHandler}>increment</button>
-        <button onClick={this.decrementHandler}>decrement</button>
+        <div>count: {this.props.count}</div>
+        <button onClick={this.props.decrementHandler}>decrement</button>
+        <button onClick={this.props.incrementHandler}>increment</button>
       </div>
     );
   }
