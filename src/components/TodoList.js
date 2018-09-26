@@ -12,6 +12,7 @@ ToDo moveCursor
 
 import React from "react";
 import TodoForm from "./TodoForm";
+import Todo from "./Todo";
 
 export default class TodoList extends React.Component {
   state = {
@@ -27,7 +28,9 @@ export default class TodoList extends React.Component {
     return (
       <div>
         <TodoForm onSubmit={this.addTodo} />
-        {JSON.stringify(this.state.todos)}
+        {this.state.todos.map(todo => (
+          <Todo key={todo.id} text={todo.text} />
+        ))}
       </div>
     );
   }
