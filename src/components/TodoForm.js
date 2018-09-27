@@ -28,7 +28,7 @@ export default class TodoForm extends React.Component {
           name="text"
           value={this.state.text}
           onChange={this.handleChange}
-          placeholder="todo..."
+          placeholder="todos..."
         />
         <button onClick={this.handleSubmit}>Add Todo</button>
       </form>
